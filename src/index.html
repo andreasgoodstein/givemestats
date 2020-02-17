@@ -9,7 +9,7 @@
       body {
         align-items: center;
         display: flex;
-        font-family: "Courier New", Courier, monospace;
+        font-family: 'Courier New', Courier, monospace;
         line-height: 1.4rem;
         height: 100vh;
         margin: 0;
@@ -26,11 +26,16 @@
   </head>
   <body>
     <main>
-      <button id="give_stats_button">Give me stats, yo!</button>
+      <button id="give_stats_button">Give me new stats, yo!</button>
 
       <section class="options">
         <div class="option">
-          <span>Method: </span><span>4d6 Drop Lowest</span>
+          <span>Method: </span>
+          <select id="method_select">
+            <option value="4D6DropLowest" selected>4d6 Drop Lowest</option>
+            <option value="4D6DropHighest">4d6 Drop Highest</option>
+            <option value="D20">D20</option>
+          </select>
         </div>
       </section>
 
@@ -52,6 +57,18 @@
         <div class="meta_stat">
           <span>Total modifier: </span><span id="total_mod">0</span>
         </div>
+      </section>
+
+      <section class="re_roll" style="position: relative;">
+        <span style="visibility: hidden; position: absolute;">
+          <span>Reroll: </span><span id="re_roll"></span>
+        </span>
+        <button
+          id="re_roll_button"
+          style="visibility: hidden; position: absolute;"
+        >
+          Heck! I need that re-roll...
+        </button>
       </section>
     </main>
 
