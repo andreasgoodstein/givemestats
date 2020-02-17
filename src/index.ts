@@ -6,6 +6,7 @@ const settings: Settings = {
 };
 
 registerEventHandlers();
+registerServiceWorker();
 
 function registerEventHandlers() {
   const generateStatsButton = document.getElementById(
@@ -121,5 +122,13 @@ function toggleElementVisibility(
     element.style.visibility = 'visible';
   } else {
     element.style.visibility = 'hidden';
+  }
+}
+
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+      await navigator.serviceWorker.register('./service_worker.ts');
+    });
   }
 }
