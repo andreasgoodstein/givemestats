@@ -1,6 +1,6 @@
 var CACHE_NAME = 'give-me-stats-v1';
 
-var urlsToCache = ['/givemestats'];
+var urlsToCache = [''];
 
 self.addEventListener('install', event => {
   // Perform install steps
@@ -23,7 +23,7 @@ self.addEventListener('fetch', event => {
 
         event.waitUntil(
           (async function() {
-            const cache = await caches.open('my-cache-name');
+            const cache = await caches.open('give-me-stats-v1');
             await cache.put(
               normalizedUrl.toString(),
               await fetchResponseCloneP

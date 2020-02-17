@@ -1,7 +1,12 @@
 {
   "short_name": "Stats",
   "name": "Give Me Stats",
+  "start_url": ".",
   "display": "fullscreen",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "lang": "en",
+  "description": "An app for generating new stats for Dungeons & Dragons 5e characters",
   "icons": [
     {
       "src": "../assets/icon-192.png",
@@ -13,8 +18,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": "/givemestats",
-  "background_color": "#fff",
-  "theme_color": "#fff"
+  ]
 }
