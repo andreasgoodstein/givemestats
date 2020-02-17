@@ -1,6 +1,6 @@
 var CACHE_NAME = 'give-me-stats-v1';
 
-var urlsToCache = ['/'];
+var urlsToCache = ['/givemestats'];
 
 self.addEventListener('install', event => {
   // Perform install steps
