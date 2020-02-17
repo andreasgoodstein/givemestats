@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es2018", "dom"],
+    "lib": ["es2018", "dom", "webworker"],
     "module": "es2015",
     "moduleResolution": "node",
     "strict": true,

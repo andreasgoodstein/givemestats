@@ -1,6 +1,9 @@
-var CACHE_NAME = 'give-me-stats-v1';
+export default null;
+declare const self: ServiceWorkerGlobalScope;
 
-var urlsToCache = [''];
+const CACHE_NAME = 'give-me-stats-v1';
+
+const urlsToCache = [''];
 
 self.addEventListener('install', event => {
   // Perform install steps
