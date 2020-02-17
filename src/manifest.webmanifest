@@ -1,6 +1,7 @@
 {
   "short_name": "Stats",
   "name": "Give Me Stats",
+  "display": "fullscreen",
   "icons": [
     {
       "src": "../assets/icon-192.png",
@@ -13,6 +14,7 @@
       "sizes": "512x512"
     }
   ],
-  "display": "fullscreen",
-  "start_url": "/givemestats"
+  "start_url": "/givemestats",
+  "background_color": "#fff",
+  "theme_color": "#fff"
 }
