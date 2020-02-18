@@ -47,18 +47,14 @@ function statButtonClickHandler() {
   makeRerollVisible();
 }
 
-function updateElementWithValue(
-  identifier: string,
-  value: string,
-  append: boolean = false
-) {
+function updateElementWithValue(identifier: string, value: string) {
   const element = document.getElementById(identifier);
 
   if (!element) {
     return;
   }
 
-  element.innerText = append ? `${element.innerText}${value}` : value;
+  element.innerHTML = value;
 }
 
 function makeRerollVisible() {
@@ -97,7 +93,7 @@ function reRollClickHandler(buttonList: HTMLButtonElement[], event: Event) {
 
   updateElementWithValue(
     'total_mod',
-    `  ${stats.totalModifier} / ${newStats.totalModifier}`
+    `&nbsp;${stats.totalModifier} / ${newStats.totalModifier}`
   );
 }
 
