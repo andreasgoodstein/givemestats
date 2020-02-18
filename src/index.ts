@@ -1,8 +1,18 @@
-import { Settings, GeneratingMethod } from './types';
-import { getNewStats, getReRoll } from './stats';
+import { Settings, GeneratingMethod, Stats } from './types';
+import { getNewStats, getReRoll, calculateTotalModifier } from './stats';
 
 const settings: Settings = {
   method: GeneratingMethod.FourD6DropLowest
+};
+
+let stats: Stats = {
+  str: 10,
+  dex: 10,
+  con: 10,
+  int: 10,
+  wis: 10,
+  cha: 10,
+  totalModifier: 0
 };
 
 registerEventHandlers();
@@ -12,16 +22,19 @@ function registerEventHandlers() {
   const generateStatsButton = document.getElementById(
     'give_stats_button'
   ) as HTMLButtonElement;
-  generateStatsButton?.addEventListener('click', generateStatsButtonHandler);
+  generateStatsButton?.addEventListener('click', statButtonClickHandler);
 
   const changeGeneratorMethodSelector = document.getElementById(
     'method_select'
   ) as HTMLSelectElement;
-  changeGeneratorMethodSelector?.addEventListener('change', handleMethodChange);
+  changeGeneratorMethodSelector?.addEventListener(
+    'change',
+    methodChangeHandler
+  );
 }
 
-function generateStatsButtonHandler() {
-  const stats = getNewStats(settings);
+function statButtonClickHandler() {
+  stats = getNewStats(settings);
 
   updateElementWithValue('str', stats.str.toString());
   updateElementWithValue('dex', stats.dex.toString());
@@ -34,42 +47,76 @@ function generateStatsButtonHandler() {
   makeRerollVisible();
 }
 
-function updateElementWithValue(identifier: string, value: string) {
+function updateElementWithValue(
+  identifier: string,
+  value: string,
+  append: boolean = false
+) {
   const element = document.getElementById(identifier);
 
   if (!element) {
     return;
   }
 
-  element.innerText = value;
+  element.innerText = append ? `${element.innerText}${value}` : value;
 }
 
 function makeRerollVisible() {
-  const rerollSectionElement = document.querySelector(
-    'section.re_roll'
-  ) as HTMLElement;
+  const reRollButtonList = Array.from(
+    document.querySelectorAll('.re_roll_button')
+  ) as HTMLButtonElement[];
 
-  if (!rerollSectionElement) {
-    return;
-  }
-
-  const reRollButton = rerollSectionElement.querySelector(
-    '#re_roll_button'
-  ) as HTMLButtonElement;
-
-  if (!reRollButton || !reRollButton.parentElement) {
-    return;
-  }
-
-  reRollButton.addEventListener('click', handleRerollClick);
-
-  const reRollElement = document.getElementById('re_roll') as HTMLSpanElement;
-
-  toggleElementVisibility(reRollButton, true);
-  toggleElementVisibility(reRollElement.parentElement, false);
+  reRollButtonList.forEach(button => {
+    toggleElementVisibility(button, true);
+    button.addEventListener(
+      'click',
+      reRollClickHandler.bind(null, reRollButtonList)
+    );
+  });
 }
 
-function handleMethodChange(event: Event) {
+function reRollClickHandler(buttonList: HTMLButtonElement[], event: Event) {
+  buttonList.forEach(button => {
+    toggleElementVisibility(button, false);
+  });
+
+  const currentTarget = event.currentTarget as HTMLButtonElement;
+
+  const reRoll = getReRoll(settings);
+
+  const reRolledStatName = currentTarget?.dataset?.stat as string;
+
+  const newStats = { ...stats, [reRolledStatName]: reRoll };
+
+  newStats.totalModifier = calculateTotalModifier(newStats);
+
+  updateElementWithValue(
+    reRolledStatName,
+    `${stats[reRolledStatName]} / ${newStats[reRolledStatName]}`
+  );
+
+  updateElementWithValue(
+    'total_mod',
+    `  ${stats.totalModifier} / ${newStats.totalModifier}`
+  );
+}
+
+function toggleElementVisibility(
+  element: HTMLElement | null,
+  visible: boolean
+) {
+  if (!element) {
+    return;
+  }
+
+  if (visible) {
+    element.style.visibility = 'visible';
+  } else {
+    element.style.visibility = 'hidden';
+  }
+}
+
+function methodChangeHandler(event: Event) {
   const currentTarget = event.currentTarget as HTMLSelectElement;
 
   switch (currentTarget?.value) {
@@ -90,38 +137,6 @@ function handleMethodChange(event: Event) {
 
     default:
       return;
-  }
-}
-
-function handleRerollClick(event: Event) {
-  const currentTarget = event.currentTarget as HTMLButtonElement;
-
-  toggleElementVisibility(currentTarget, false);
-
-  const reRollElement = document.getElementById('re_roll') as HTMLSpanElement;
-
-  if (!reRollElement) {
-    return;
-  }
-
-  const reRoll = getReRoll(settings);
-
-  reRollElement.innerText = reRoll.toString();
-  toggleElementVisibility(reRollElement.parentElement, true);
-}
-
-function toggleElementVisibility(
-  element: HTMLElement | null,
-  visible: boolean
-) {
-  if (!element) {
-    return;
-  }
-
-  if (visible) {
-    element.style.visibility = 'visible';
-  } else {
-    element.style.visibility = 'hidden';
   }
 }
 

@@ -36,7 +36,7 @@ function generateStat(settings: Settings): number {
   }
 }
 
-function calculateTotalModifier(stats: Stats): number {
+export function calculateTotalModifier(stats: Stats): number {
   return (
     calculateModifier(stats.str) +
     calculateModifier(stats.dex) +

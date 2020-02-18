@@ -9,6 +9,7 @@ export type Settings = {
 };
 
 export type Stats = {
+  [index: string]: number;
   str: number;
   dex: number;
   con: number;

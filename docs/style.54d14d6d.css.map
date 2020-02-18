@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.less"],"names":[],"mappings":"AAAA,MACE,kBAAA,CACA,YAAA,CACA,kBAAA,CACA,6BAAA,CACA","file":"style.54d14d6d.css","sourceRoot":"../src","sourcesContent":[".stat {\n  align-items: center;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin-bottom: 0.3rem;\n}\n"]}

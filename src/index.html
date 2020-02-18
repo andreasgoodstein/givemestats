@@ -29,18 +29,25 @@
       button {
         padding: 0.5rem;
       }
+
+      .button_main {
+        width: 100%;
+      }
     </style>
 
     <link href="../assets/favicon.ico" rel="icon" type="image/x-icon" />
     <link href="./manifest.webmanifest" rel="manifest" />
+    <link href="./style.less" rel="stylesheet" />
   </head>
   <body>
     <main>
-      <button id="give_stats_button">Give me new stats, yo!</button>
+      <button class="button_main" id="give_stats_button">
+        Give me new stats, yo!
+      </button>
 
       <section class="options">
         <div class="option">
-          <label for="method_select">Method: </label>
+          <label for="method_select">Method </label>
           <select id="method_select">
             <option value="4D6DropLowest" selected>4d6 Drop Lowest</option>
             <option value="4D6DropHighest">4d6 Drop Highest</option>
@@ -50,35 +57,77 @@
       </section>
 
       <section class="results">
-        <div class="stat"><span>STR: </span><span id="str">10</span></div>
+        <div class="stat">
+          <span>STR </span><span id="str">10</span
+          ><button
+            class="re_roll_button"
+            style="visibility: hidden;"
+            data-stat="str"
+          >
+            Reroll
+          </button>
+        </div>
 
-        <div class="stat"><span>DEX: </span><span id="dex">10</span></div>
+        <div class="stat">
+          <span>DEX </span><span id="dex">10</span
+          ><button
+            class="re_roll_button"
+            style="visibility: hidden;"
+            data-stat="dex"
+          >
+            Reroll
+          </button>
+        </div>
 
-        <div class="stat"><span>CON: </span><span id="con">10</span></div>
+        <div class="stat">
+          <span>CON </span><span id="con">10</span
+          ><button
+            class="re_roll_button"
+            style="visibility: hidden;"
+            data-stat="con"
+          >
+            Reroll
+          </button>
+        </div>
 
-        <div class="stat"><span>INT: </span><span id="int">10</span></div>
+        <div class="stat">
+          <span>INT </span><span id="int">10</span
+          ><button
+            class="re_roll_button"
+            style="visibility: hidden;"
+            data-stat="int"
+          >
+            Reroll
+          </button>
+        </div>
 
-        <div class="stat"><span>WIS: </span><span id="wis">10</span></div>
+        <div class="stat">
+          <span>WIS </span><span id="wis">10</span
+          ><button
+            class="re_roll_button"
+            style="visibility: hidden;"
+            data-stat="wis"
+          >
+            Reroll
+          </button>
+        </div>
 
-        <div class="stat"><span>CHA: </span><span id="cha">10</span></div>
-      </section>
-
-      <section class="results">
-        <div class="meta_stat">
-          <span>Total modifier: </span><span id="total_mod">0</span>
+        <div class="stat">
+          <span>CHA </span><span id="cha">10</span
+          ><button
+            class="re_roll_button"
+            style="visibility: hidden;"
+            data-stat="cha"
+          >
+            Reroll
+          </button>
         </div>
       </section>
 
-      <section class="re_roll" style="position: relative;">
-        <span style="visibility: hidden; position: absolute;">
-          <span>Reroll: </span><span id="re_roll"></span>
-        </span>
-        <button
-          id="re_roll_button"
-          style="visibility: hidden; position: absolute;"
-        >
-          Heck! I need that re-roll...
-        </button>
+      <section class="results">
+        <div class="stat">
+          <span>Total modifier </span><span id="total_mod">0</span>
+        </div>
       </section>
     </main>
 
