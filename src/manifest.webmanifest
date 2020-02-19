@@ -2,7 +2,7 @@
   "short_name": "Stats",
   "name": "Give Me Stats",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "background_color": "#fff",
   "theme_color": "#fff",
   "lang": "en",
