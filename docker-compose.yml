@@ -5,7 +5,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-    command: 'yarn install --frozen-lockfile'
+    command: 'yarn install'
 
   build:
     image: node:12

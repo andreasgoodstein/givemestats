@@ -1,17 +1,16 @@
 {
   "name": "givemestats",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "Andreas Goodstein <andreasgoodstein@gmail.com>",
+  "author": "Andreas Goodstein",
   "license": "MIT",
   "dependencies": {
     "less": "^3.11.1",
-    "parcel": "^1.12.4",
+    "parcel": "1.12.3",
     "parcel-plugin-clean-dist": "^0.0.6",
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "parcel src/index.html --hmr-port 30000",
-    "build": "parcel build src/index.html --public-url https://andreasgoodstein.github.io/givemestats/ --out-dir docs"
+    "start": "parcel ./src/index.html --hmr-port 30000",
+    "build": "parcel build ./src/index.html --public-url https://andreasgoodstein.github.io/givemestats/ --out-dir ./docs"
   }
 }
