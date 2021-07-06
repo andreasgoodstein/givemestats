@@ -1,7 +1,8 @@
 export enum GeneratingMethod {
   FourD6DropLowest,
   FourD6DropHighest,
-  D20
+  ThreeD6,
+  D20,
 }
 
 export type Settings = {
