@@ -2,7 +2,7 @@ import { Settings, GeneratingMethod, Stats } from './types';
 import { getNewStats, getReRoll, calculateTotalModifier } from './stats';
 
 const settings: Settings = {
-  method: GeneratingMethod.FourD6DropLowest
+  method: GeneratingMethod.FourD6DropLowest,
 };
 
 let stats: Stats = {
@@ -12,7 +12,7 @@ let stats: Stats = {
   int: 10,
   wis: 10,
   cha: 10,
-  totalModifier: 0
+  totalModifier: 0,
 };
 
 registerEventHandlers();
@@ -62,7 +62,7 @@ function makeRerollVisible() {
     document.querySelectorAll('.re_roll_button')
   ) as HTMLButtonElement[];
 
-  reRollButtonList.forEach(button => {
+  reRollButtonList.forEach((button) => {
     toggleElementVisibility(button, true);
     button.addEventListener(
       'click',
@@ -72,7 +72,7 @@ function makeRerollVisible() {
 }
 
 function reRollClickHandler(buttonList: HTMLButtonElement[], event: Event) {
-  buttonList.forEach(button => {
+  buttonList.forEach((button) => {
     toggleElementVisibility(button, false);
   });
 
@@ -123,6 +123,11 @@ function methodChangeHandler(event: Event) {
 
     case '4D6DropHighest': {
       settings.method = GeneratingMethod.FourD6DropHighest;
+      return;
+    }
+
+    case '3D6': {
+      settings.method = GeneratingMethod.ThreeD6;
       return;
     }
 

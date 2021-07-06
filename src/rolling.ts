@@ -19,6 +19,14 @@ export const fourD6DropHighest = (): number => {
   return sumOfRolls;
 };
 
+export const threeD6 = (): number => {
+  const dieRolls = [rollDie(6), rollDie(6), rollDie(6)];
+
+  const sumOfRolls = dieRolls.reduce((sum, roll) => sum + roll, 0);
+
+  return sumOfRolls;
+};
+
 export const d20 = (): number => {
   return rollDie(20);
 };

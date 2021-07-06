@@ -1,5 +1,5 @@
 import { Stats, GeneratingMethod, Settings } from './types';
-import { fourD6DropLowest, fourD6DropHighest, d20 } from './rolling';
+import { fourD6DropLowest, fourD6DropHighest, threeD6, d20 } from './rolling';
 
 export const getNewStats = (settings: Settings): Stats => {
   const newStats = {
@@ -9,7 +9,7 @@ export const getNewStats = (settings: Settings): Stats => {
     int: generateStat(settings),
     wis: generateStat(settings),
     cha: generateStat(settings),
-    totalModifier: 0
+    totalModifier: 0,
   };
 
   newStats.totalModifier = calculateTotalModifier(newStats);
@@ -25,6 +25,10 @@ function generateStat(settings: Settings): number {
 
     case GeneratingMethod.FourD6DropHighest: {
       return fourD6DropHighest();
+    }
+
+    case GeneratingMethod.ThreeD6: {
+      return threeD6();
     }
 
     case GeneratingMethod.D20: {
